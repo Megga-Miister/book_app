@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000;
 app.set('view engine', 'ejs');
 app.use(express.static('./public'));
 
-app.get('/', (req, res) => {
+app.get('/hello', (req, res) => {
   res.render('../views/pages/index');
 });
 
