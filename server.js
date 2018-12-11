@@ -25,6 +25,17 @@ app.post('/search', (req, res) => {
   // res.sendFile('/searches/show', {root: './public'});
 });
 
+function Book(query, res) {
+  this.search_query = query;
+  this.title = res.title;
+  this.author = res.author;
+  this.publisher = res.publisher;
+  this.description = res.description;
+}
+
+
+
+
 app.listen(PORT, () => {
   console.log(`listening on PORT: ${PORT}`);
 });
