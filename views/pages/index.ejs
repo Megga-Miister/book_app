@@ -2,7 +2,8 @@
 <html>
 <head>
   <title>Book App</title>
-  <link rel="stylesheet" href="styles/base.css" />
+  <link rel="stylesheet" href="reset/base.css"/>
+  <link rel="stylesheet" href="styles/base.css"/>
 </head>
 <body>
   <header>
@@ -11,9 +12,9 @@
   <main>
     <h1>Hello World</h1>
   <div>Search by Title or Author</div>
-  <form action="/search" method="post" ></form>
+  <form action="/search" method="post" >
   <label>
-      <input type="text" name="Enter a title or author">
+      <input type="text" name="search">
   </label>
       <label> Title
         <input type="radio" name="search"
@@ -24,6 +25,7 @@
           value="author" required >
         </label>
         <button>Search the Google Books API</button>
+      </form>
       </main>
       <footer>
 
