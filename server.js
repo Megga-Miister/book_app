@@ -3,55 +3,52 @@
 const express = require('express');
 const app = express();
 const superagent = require('superagent');
+const cors = require('cors');
 const PORT = process.env.PORT || 3000;
 
-app.set('view engine', 'ejs');
+require('dotenv').config();
+
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('./public'));
+app.use(cors());
+app.set('view engine', 'ejs');
 
-app.get('/hello', (req, res) => {
+app.get('/', (req, res) => {
   res.render('../views/pages/index');
 });
 
-// app.get('/', (req, res) => {
-//   res.render('../views/pages/error');
-// });
-
-// app.post('/search', searchBooks);
-app.post('/search', (req, res) => {
-  console.log('search criteria', req.body);
-  // res.sendFile('/searches/show', {root: './public'});
-});
+app.post('/search',searchBooks);
 
 let books =[];
 
-function Book(query, res) {
+function Book(query) {
   this.search_query = query;
-  this.title = res.volumeInfo.title;
-  this.author = res.volumeInfo.author;
-  this.publisher = res.volumeInfo.publisher;
-  this.description = res.volumeInfo.description;
+  this.title = query.volumeInfo.title;
+  this.author = query.volumeInfo.authors;
+  this.description = query.volumeInfo.description;
+  this.img_url = query.volumeInfo.imageLinks.thumbnail;
   books.push(this);
 }
 
 
 function searchBooks (req, res) {
-  // const bookHandler = {
-  //   location: req.query.data,
-  // }
-  Book.fetchBooks(req.query.data)
-  app.get('/books', (request, response) => {
-    response.render('books', {booklist: books});
-  });
+  const bookHandler = req.body;
+
+  Book.fetchBooks(bookHandler)
+    .then( books => {
+      res.render('pages/searches/show', { booklist: books });
+    });
 }
 
-Book.fetchBooks = function (query) {
-  const authorURL = `https://www.googleapis.com/books/v1/volumes?q=intitle:${query}`;
-  const titleURL = `https://www.googleapis.com/books/v1/volumes?q=inauthor:${query}`;
+Book.fetchBooks = function (data) {
+  let search = data.searchBook;
+  let query = data.search;
+  const authorURL = `https://www.googleapis.com/books/v1/volumes?q=${search}:intitle=${search}`;
+  const titleURL = `https://www.googleapis.com/books/v1/volumes?q=${search}:inauthor=${search}`;
   if (query === 'author') {
     return superagent.get(authorURL)
       .then(result => {
-        let newBook = result.body.data.map(rest => {
+        let newBook = result.body.items.map(rest => {
           const summary = new Book(rest);
           return summary;
         });
@@ -60,13 +57,13 @@ Book.fetchBooks = function (query) {
   } else if (query === 'title') {
     return superagent.get(titleURL)
       .then(result => {
-        let newBook = result.body.data.map(rest => {
+        let newBook = result.body.items.map(rest => {
           const summary = new Book(rest);
           return summary;
         });
         return newBook;
       });
-  } 
+  }
 }  
 
 // function searchBook (req, res) {
@@ -111,6 +108,7 @@ Book.fetchBooks = function (query) {
 //   return client.query(SQL, values);
 // }
 
+app.get('*', (req, res) => res.status(404).send('Page Not Found'));
 app.listen(PORT, () => {
   console.log(`listening on PORT: ${PORT}`);
 });

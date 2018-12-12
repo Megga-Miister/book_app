@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Book App</title>
-  <link rel="stylesheet" href="reset/base.css"/>
-  <link rel="stylesheet" href="styles/base.css"/>
-</head>
-<body>
-  <header>
-
-  </header>
+    <head>
+        <title>Book App</title>
+        <link rel="stylesheet" href="/styles/reset.css"/>
+        <link rel="stylesheet" href="styles/base.css"/>
+      </head>
+      <body>
+        <header>
+          <img src="/styles/images/ham.png" id="ham">
+          <div>Best Books!</div>
+        </header>
   <main>
-    <ul>
+      <div id="title">Search Results</div>
+    <div>
       <% booklist.forEach( element => { %>
-        <li><%= element %> </li>
-      <%} )%>
-    </ul>
+       <div>
+          <img src="<%= element.img_url%>" class="bImage">
+          <p>Title: <%= element.title %></p>
+          <p>Author: <%= element.author%></p>
+          <p>Description: <%=element.description%></p>
+       </div>
+      <%})%>
+      </div>
   </main>
   <footer>
 

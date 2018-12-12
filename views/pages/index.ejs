@@ -2,28 +2,37 @@
 <html>
 <head>
   <title>Book App</title>
-  <link rel="stylesheet" href="styles/reset.css"/>
+  <link rel="stylesheet" href="/styles/reset.css"/>
   <link rel="stylesheet" href="styles/base.css"/>
 </head>
 <body>
   <header>
-    <div>Best Books!</div>
+    <img src="/styles/images/ham.png" id="ham">
+    <div id="header">Best Books!</div>
   </header>
   <main>
   <div id="title">Search by Title or Author</div>
   <form action="/search" method="post" >
-  <label>
-      <input type="text" name="search">
-  </label>
-      <label> Title
-        <input type="radio" name="search"
-        value="title">
-      </label>
-      <label> Author
-          <input type="radio" name="search"
-          value="author" required >
+    <div id="searchlayout">
+      <div>
+        <label>
+          <input type="text" name="searchBook" placeholder="Enter a title or author">
         </label>
-        <button>Search the Google Books API</button>
+      </div>
+      <div id="radio">
+        <label id="labels"> Title
+          <input type="radio" name="search" value="title">
+        </label>
+      </div>
+      <div id="radio">
+        <label id="labels"> Author
+          <input type="radio" name="search" value="author" required >
+        </label>
+      </div>
+      <div>
+        <button id ="submission">Search the Google Books API</button>
+      </div>
+    </div>
       </form>
       </main>
       <footer>

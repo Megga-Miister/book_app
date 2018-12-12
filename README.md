@@ -15,6 +15,18 @@ Estimate of time needed to complete: 1 hr
 
 Start time: 9:30am
 
-Finish time: n/a
+Break: 2:00pm-5:00pm
 
-Actual time needed to complete: n/a
+Finish time: 6:00pm
+
+Actual time needed to complete: 4 hrs
+
+Number and name of feature: #3 Search the Google Books API
+
+Estimate of time needed to complete: 1 hr
+
+Start time: 6:00pm
+
+Finish time: 7:00pm
+
+Actual time needed to complete: 6 hrs
