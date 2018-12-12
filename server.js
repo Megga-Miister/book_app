@@ -23,6 +23,7 @@ app.get('/new', (req, res) => {
 });
 app.post('/search',searchBooks);
 app.get('/', getBooks);
+app.get('/myBook/:id', getOneBook);
 
 let books =[];
 
@@ -76,7 +77,16 @@ function getBooks(req, res) {
   let SQL = 'SELECT * from books;';
   return client.query(SQL)
     .then(results => res.render('pages/index', { bookshelf: results.rows }))
-    .catch(err => console.error(err));
+    .catch(err => console.error(err));    
+}
+
+function getOneBook(req, res) {
+  let SQL = 'SELECT * FROM books WHERE id=$1;';
+  let book = [req.params.id];
+  return client.query(SQL, book)
+    .then(result => {
+      return res.render('/pages/books/detail', { singlebook: result.rows[0] });
+    });
 }
 // function searchBook (req, res) {
 //   const handler = {

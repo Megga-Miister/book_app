@@ -11,7 +11,8 @@
           <div>Best Books!</div>
         </header>
   <main>
-      <div id="title">Search Results</div>
+      <button id ="submission" href="">Search the Google Books API</button>
+      <div id="title">My Book Shelf</div>
     <div>
       <% bookshelf.forEach( element => { %>
        <div>
@@ -20,8 +21,12 @@
           <p>Author: <%= element.author%></p>
           <p>ISBN: <%= element.isbn%></p>
           <p>Description: <%=element.description%></p>
-       </div>
+          <a href="/books/<%= element.id %>">View Details</a>
+          </div>
       <%})%>
+      </div>
+      <div>
+        
       </div>
   </main>
   <footer>

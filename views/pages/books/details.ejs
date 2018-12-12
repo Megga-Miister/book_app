@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Book App</title>
+        <link rel="stylesheet" href="/styles/reset.css"/>
+        <link rel="stylesheet" href="styles/base.css"/>
+      </head>
+      <body>
+        <header>
+          <img src="/styles/images/ham.png" id="ham">
+          <div>Best Books!</div>
+        </header>
+  <main>
+      <div id="title">My Book Shelf</div>
+    <div>
+      <% bookdetails.forEach( element => { %>
+       <div>
+          <img src="<%= element.img_url%>" class="bImage">
+          <p>Title: <%= element.title %></p>
+          <p>Author: <%= element.author%></p>
+          <p>Description: <%=element.description%></p>
+          <a href="/books/<%= element.id %>">View Details</a>
+       </div>
+      <%})%>
+      </div>
+      <div>
+        
+      </div>
+  </main>
+  <footer>
+  </footer>
+</body>
+</html>
