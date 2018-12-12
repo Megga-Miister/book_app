@@ -50,3 +50,32 @@ Start time: 7:45p m
 Finish time: 8:15pm
 
 Actual time needed to complete: n/a
+Number and name of feature: #6 setup db
+
+Estimate of time needed to complete: 30 minutes
+
+Start time: 8:45 am
+
+Finish time: 9:15 am
+
+Actual time needed to complete: 30 min
+
+Number and name of feature: #7 Show all saved books on app load
+
+Estimate of time needed to complete: 1 hr
+
+Start time: 9:15 am
+
+Finish time: 10:30 am
+
+Actual time needed to complete: 1hr 15 min
+
+Number and name of feature: #8 Book detail view
+
+Estimate of time needed to complete: 1 hr
+
+Start time: 10:30 am
+
+Finish time: 12:15 am
+
+Actual time needed to complete: 1hr 45 min
