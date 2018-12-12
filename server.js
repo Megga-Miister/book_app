@@ -23,7 +23,7 @@ app.get('/new', (req, res) => {
 });
 app.post('/search',searchBooks);
 app.get('/', getBooks);
-app.get('/myBook/:id', getOneBook);
+app.get('/books/details/:id', getOneBook);
 
 let books =[];
 
@@ -85,7 +85,7 @@ function getOneBook(req, res) {
   let book = [req.params.id];
   return client.query(SQL, book)
     .then(result => {
-      return res.render('/pages/books/detail', { singlebook: result.rows[0] });
+      return res.render('../views/pages/books/details', { singlebook: result.rows[0] });
     });
 }
 // function searchBook (req, res) {

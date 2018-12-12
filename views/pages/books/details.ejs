@@ -2,8 +2,8 @@
 <html>
     <head>
         <title>Book App</title>
-        <link rel="stylesheet" href="/styles/reset.css"/>
-        <link rel="stylesheet" href="styles/base.css"/>
+        <link rel="stylesheet" href="../../styles/reset.css"/>
+        <link rel="stylesheet" href="../../styles/base.css"/>
       </head>
       <body>
         <header>
@@ -13,15 +13,12 @@
   <main>
       <div id="title">My Book Shelf</div>
     <div>
-      <% bookdetails.forEach( element => { %>
-       <div>
-          <img src="<%= element.img_url%>" class="bImage">
-          <p>Title: <%= element.title %></p>
-          <p>Author: <%= element.author%></p>
-          <p>Description: <%=element.description%></p>
-          <a href="/books/<%= element.id %>">View Details</a>
+       <div id="singlebook" data-id="<%= singlebook.id%>">
+          <img src="<%= singlebook.img_url%>" class="bImage">
+          <p>Title: <%= singlebook.title %></p>
+          <p>Author: <%= singlebook.author%></p>
+          <p>Description: <%=singlebook.description%></p>
        </div>
-      <%})%>
       </div>
       <div>
         
