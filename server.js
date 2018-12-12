@@ -25,6 +25,7 @@ function Book(query) {
   this.search_query = query;
   this.title = query.volumeInfo.title;
   this.author = query.volumeInfo.authors;
+  this.isbn=parseInt(query.volumeInfo.industryIdentifiers[0].identifier);
   this.description = query.volumeInfo.description;
   this.img_url = query.volumeInfo.imageLinks.thumbnail;
   books.push(this);
