@@ -4,20 +4,25 @@ const express = require('express');
 const app = express();
 const superagent = require('superagent');
 const cors = require('cors');
+const pg = require('pg');
 const PORT = process.env.PORT || 3000;
 
 require('dotenv').config();
 
+const client = new pg.Client(process.env.DATABASE_URL);
+client.connect();
+client.on('error', err=> console.error(err));
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('./public'));
 app.use(cors());
 app.set('view engine', 'ejs');
 
-app.get('/', (req, res) => {
-  res.render('../views/pages/index');
-});
 
+app.get('/new', (req, res) => {
+  res.render('../views/pages/searches/new');
+});
 app.post('/search',searchBooks);
+app.get('/', getBooks);
 
 let books =[];
 
@@ -67,6 +72,12 @@ Book.fetchBooks = function (data) {
   }
 }  
 
+function getBooks(req, res) {
+  let SQL = 'SELECT * from books;';
+  return client.query(SQL)
+    .then(results => res.render('pages/index', { bookshelf: results.rows }))
+    .catch(err => console.error(err));
+}
 // function searchBook (req, res) {
 //   const handler = {
 //     locaiton: req.query.data,
