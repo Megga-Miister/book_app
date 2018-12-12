@@ -1,43 +1,35 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Book App</title>
-  <link rel="stylesheet" href="/styles/reset.css"/>
-  <link rel="stylesheet" href="styles/base.css"/>
-</head>
-<body>
-  <header>
-    <img src="/styles/images/ham.png" id="ham">
-    <div id="header">Best Books!</div>
-  </header>
+    <head>
+        <title>Book App</title>
+        <link rel="stylesheet" href="/styles/reset.css"/>
+        <link rel="stylesheet" href="styles/base.css"/>
+      </head>
+      <body>
+        <header>
+          <img src="/styles/images/ham.png" id="ham">
+          <div>Best Books!</div>
+        </header>
   <main>
-  <div id="title">Search by Title or Author</div>
-  <form action="/search" method="post" >
-    <div id="searchlayout">
-      <div>
-        <label>
-          <input type="text" name="searchBook" placeholder="Enter a title or author">
-        </label>
-      </div>
-      <div id="radio">
-        <label id="labels"> Title
-          <input type="radio" name="search" value="title">
-        </label>
-      </div>
-      <div id="radio">
-        <label id="labels"> Author
-          <input type="radio" name="search" value="author" required >
-        </label>
+      <button id ="submission" href="">Search the Google Books API</button>
+      <div id="title">My Book Shelf</div>
+    <div>
+      <% bookshelf.forEach( element => { %>
+       <div>
+          <img src="<%= element.img_url%>" class="bImage">
+          <p>Title: <%= element.title %></p>
+          <p>Author: <%= element.author%></p>
+          <p>ISBN: <%= element.isbn%></p>
+          <p>Description: <%=element.description%></p>
+          <a href="/books/details/<%= element.id %>">View Details</a>
+          </div>
+      <%})%>
       </div>
       <div>
-        <button id ="submission">Search the Google Books API</button>
+        
       </div>
-    </div>
-      </form>
-      </main>
-      <footer>
-
-      </footer>
-
+  </main>
+  <footer>
+  </footer>
 </body>
 </html>

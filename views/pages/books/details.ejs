@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Book App</title>
+        <link rel="stylesheet" href="../../styles/reset.css"/>
+        <link rel="stylesheet" href="../../styles/base.css"/>
+      </head>
+      <body>
+        <header>
+          <img src="/styles/images/ham.png" id="ham">
+          <div>Best Books!</div>
+        </header>
+  <main>
+      <div id="title">My Book Shelf</div>
+    <div>
+       <div id="singlebook" data-id="<%= singlebook.id%>">
+          <img src="<%= singlebook.img_url%>" class="bImage">
+          <p>Title: <%= singlebook.title %></p>
+          <p>Author: <%= singlebook.author%></p>
+          <p>Description: <%=singlebook.description%></p>
+          <a href="/">View Home Bookshelf</a>
+       </div>
+      </div>
+      <div>
+        
+      </div>
+  </main>
+  <footer>
+  </footer>
+</body>
+</html>
