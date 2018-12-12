@@ -71,13 +71,13 @@ Book.fetchBooks = function (data) {
         return newBook;
       });
   }
-}  
+}
 
 function getBooks(req, res) {
   let SQL = 'SELECT * from books;';
   return client.query(SQL)
     .then(results => res.render('pages/index', { bookshelf: results.rows }))
-    .catch(err => console.error(err));    
+    .catch(err => console.error(err));
 }
 
 function getOneBook(req, res) {
