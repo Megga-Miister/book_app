@@ -21,14 +21,16 @@ app.set('view engine', 'ejs');
 app.get('/new', (req, res) => {
   res.render('../views/pages/searches/new');
 });
-app.post('/search',searchBooks);
 app.get('/', getBooks);
 app.get('/books/details/:id', getOneBook);
-app.post('/search', saveBook);
+app.post('/search',searchBooks);
+app.post('/s', saveBook);
+app.get('/views/pages/searches/search');
+app.get('/views/pages/searches/s');
 let books =[];
 
 function Book(query) {
-  this.search_query = query;
+  // this.search_query = query;
   this.title = query.volumeInfo.title;
   this.author = query.volumeInfo.authors;
   this.isbn=parseInt(query.volumeInfo.industryIdentifiers[0].identifier);
@@ -74,14 +76,14 @@ Book.fetchBooks = function (data) {
 }
 
 function getBooks(req, res) {
-  let SQL = 'SELECT * from books;';
+  let SQL = `SELECT * from books;`;
   return client.query(SQL)
     .then(results => res.render('pages/index', { bookshelf: results.rows }))
-    .catch(err => console.error(err));
+    .catch(err => errorHandler(err, res));
 }
 
 function getOneBook(req, res) {
-  let SQL = 'SELECT * FROM books WHERE id=$1;';
+  let SQL = `SELECT * FROM books WHERE id=$1;`;
   let book = [req.params.id];
   return client.query(SQL, book)
     .then(result => {
@@ -91,12 +93,14 @@ function getOneBook(req, res) {
 
 function saveBook(req, res) {
   let {title, author, isbn, description, img_url} = req.body;
-  let SQL = 'INSERT INTO books(title, author, isbn, description, img_url) VALUES ($1,$2,$3,$4,$5);';
+  let SQL = `INSERT INTO books(title, author, isbn, description, img_url) VALUES ($1,$2,$3,$4,$5);`;
   let values =[title, author, isbn, description, img_url];
-
   return client.query(SQL, values)
     .then(res.redirect('/'))
-    .catch(err => console.error(err));
+    .catch(err => errorHandler(err, res));
+}
+function errorHandler(err, res) {
+  res.render('views/pages/error', {error: 'https://http.cat/404'});
 }
 
 app.get('*', (req, res) => res.status(404).send('Page Not Found'));

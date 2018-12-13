@@ -26,14 +26,12 @@
            <button class="selectbut">Select Book</button>
         </div>
        <form action="/" class="edit-form hidden" method="post">
-        <input type="hiden" name="_method" value="edit">
-        <input type="text" name="title" value="<%- element.title%>" placeholder="edit title">
-        <input type="text" name="author" value="<%- element.author%>" placeholder="edit author">
-        <textarea name="description" placeholder="edit description" cols="25" rows="8"><%- element.description%></textarea>
-        <div id="savebut">
-            <button type="submit">Save to Bookshelf</button>
-            </div>
-        </form>
+          <!-- <input type="hiden" name="_method" value="edit"> -->
+          <input type="text" name="title" value="<%- element.title%>" placeholder="edit title">
+          <input type="text" name="author" value="<%- element.author%>" placeholder="edit author">
+          <textarea name="description" placeholder="edit description" cols="25" rows="8"><%- element.description%></textarea>
+          <button type="submit" class="savebut<%= element.id%>">Save to Bookshelf</button>
+         </form>
       <%})%>
       </div>      
       </form>
