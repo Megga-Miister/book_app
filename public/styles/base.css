@@ -51,3 +51,7 @@ header {
 #searchlayout {
   text-align: center;
 }
+
+.hidden {
+  display: none;
+}

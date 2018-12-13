@@ -1,3 +1,4 @@
 'use strict';
-$('.edit > div:c(0)').hide();
-console.log('running');
+$('.selectbut').on('click', function() {
+  $('.hidden').toggleClass('hidden');
+});
