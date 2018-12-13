@@ -97,7 +97,7 @@ function saveBook(req, res) {
   console.log('book sql values', values);
   console.log('sequel console',client.query(SQL, values));
   return client.query(SQL, values)
-    .then(res.redirect('/'))
+    .then(res.render('/'))
     .catch(err => errorHandler(err, res));
 }
 function errorHandler(err, res) {
