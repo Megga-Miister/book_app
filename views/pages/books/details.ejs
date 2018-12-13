@@ -18,6 +18,15 @@
           <p>Description: <%=singlebook.description%></p>
           <a href="/">View Home Bookshelf</a>
        </div>
+       <button class="selectbut <%=element.isbn %>">Select Book</button>
+       <form action="/" class="edit-form hidden" method="post">
+        <input type="text" name="title" value="<%- element.title%>" placeholder="edit title">
+        <input type="text" name="author" value="<%- element.author%>" placeholder="edit author">
+        <input type="text" name="isbn" value="<%- element.isbn%>">
+        <textarea name="description" placeholder="edit description" cols="25" rows="8"><%- element.description%></textarea>
+        <input type="text" name="img_url" value="<%- element.img_url%>">
+        <button type="submit" class="savebut">Save to Bookshelf</button>
+       </form>
       </div>
       <div>
         
