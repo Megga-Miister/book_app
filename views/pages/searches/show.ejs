@@ -24,15 +24,15 @@
        </div>
 
        <form action="/" class="edit-form hidden" method="post">
-          <!-- <input type="hiden" name="_method" value="edit"> -->
           <input type="text" name="title" value="<%- element.title%>" placeholder="edit title">
           <input type="text" name="author" value="<%- element.author%>" placeholder="edit author">
+          <input type="hidden" name="isbn" value="<%- element.isbn%>">
           <textarea name="description" placeholder="edit description" cols="25" rows="8"><%- element.description%></textarea>
+          <input type="hidden" name="img_url" value="<%- element.img_url%>">
           <button type="submit" class="savebut <%= element.isbn%>">Save to Bookshelf</button>
          </form>
       <%})%>
       </div>      
-      </form>
   </main>
   <footer>
   </footer>

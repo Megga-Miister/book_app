@@ -1,15 +1,8 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Book App</title>
-  <link rel="stylesheet" href="/styles/reset.css"/>
-  <link rel="stylesheet" href="styles/base.css"/>
-</head>
+  <%- include('../../layout/head')%>
 <body>
-  <header>
-    <img src="/styles/images/ham.png" id="ham">
-    <div id="header">Best Books!</div>
-  </header>
+  <%- include('../../layout/header')%>
   <main>
   <div id="title">Search by Title or Author</div>
   <form action="/search" method="post" >
