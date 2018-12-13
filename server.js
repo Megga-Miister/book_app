@@ -95,6 +95,7 @@ function saveBook(req, res) {
   let SQL = `INSERT INTO books(title, author, isbn, description, img_url) VALUES ($1,$2,$3,$4,$5);`;
   let values =[title, author, isbn, description, img_url];
   console.log('book sql values', values);
+  console.log('sequel console',client.query(SQL, values));
   return client.query(SQL, values)
     .then(res.redirect('/'))
     .catch(err => errorHandler(err, res));
