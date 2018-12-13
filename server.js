@@ -100,6 +100,9 @@ function saveBook(req, res) {
     .then(res.render('/'))
     .catch(err => errorHandler(err, res));
 }
+
+// .then( result => res.redirect(`/books/${result.rows[0].id}?newBook=true`))
+
 function errorHandler(err, res) {
   res.render('/error', {error: 'PAGE NOT FOUND'});
 }
