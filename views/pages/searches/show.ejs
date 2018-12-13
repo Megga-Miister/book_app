@@ -21,10 +21,11 @@
           <p>ISBN: <%= element.isbn%></p>
           <p>Description: <%=element.description%></p>
        </div>
-       <div>
-          <button id ="submission">Save to Bookshelf</button>
-          </div>
-       <form action="/edit" method="post" class="edit">
+
+        <div id="selectbut">
+           <button>Select Book</button>
+        </div>
+       <form action="/" class="edit">
         <label>Edit Author:
           <input type="text" placeholder="Author">
         </label>
@@ -37,7 +38,9 @@
         <label>Bookshelf
           <input type="text" placeholder="Bookshelf">
         </label>
-  
+        <div id="savebut">
+            <button>Save to Bookshelf</button>
+            </div>
       <%})%>
       </div>      
       </form>
