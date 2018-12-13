@@ -22,25 +22,18 @@
           <p>Description: <%=element.description%></p>
        </div>
 
-        <div id="selectbut">
-           <button>Select Book</button>
+        <div>
+           <button class="selectbut">Select Book</button>
         </div>
-       <form action="/" class="edit">
-        <label>Edit Author:
-          <input type="text" placeholder="Author">
-        </label>
-        <label>Edit Title:
-          <input type="text" placeholder="Title">
-        </label>
-        <label>Edit Description:
-          <input type="text" placeholder="Description">
-        </label>
-        <label>Bookshelf
-          <input type="text" placeholder="Bookshelf">
-        </label>
+       <form action="/" class="edit-form hidden" method="post">
+        <input type="hiden" name="_method" value="edit">
+        <input type="text" name="title" value="<%- element.title%>" placeholder="edit title">
+        <input type="text" name="author" value="<%- element.author%>" placeholder="edit author">
+        <textarea name="description" placeholder="edit description" cols="25" rows="8"><%- element.description%></textarea>
         <div id="savebut">
-            <button>Save to Bookshelf</button>
+            <button type="submit">Save to Bookshelf</button>
             </div>
+        </form>
       <%})%>
       </div>      
       </form>

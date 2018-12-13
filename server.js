@@ -24,7 +24,7 @@ app.get('/new', (req, res) => {
 app.post('/search',searchBooks);
 app.get('/', getBooks);
 app.get('/books/details/:id', getOneBook);
-
+app.post('/search', saveBook);
 let books =[];
 
 function Book(query) {
@@ -88,47 +88,16 @@ function getOneBook(req, res) {
       return res.render('../views/pages/books/details', { singlebook: result.rows[0] });
     });
 }
-// function searchBook (req, res) {
-//   const handler = {
-//     locaiton: req.query.data,
-//     cacheHit: (results) => {
-//       console.log('hit data from SQL', results);
-//       res.send(results.rows[0]);
-//     },
-//     cacheMiss: () => {
-//       Location.fetchBook(req.query.data)
-//         .then(data => res.send(data))
-//         .catch(console.error);
-//     }
-//   };
-//   Book.bookLookup(handler);
-// }
 
-// Book.bookLookup = element => {
-//   const SQL = `SELECT * FROM bookdata WHERE search_query=$1;`;
-//   const values = [element.query];
-//   return clientInformation.query(SQL, values)
-//     .then(results => {
-//       if (results.rowCount > 0) {
-//         element.cacheHit(results);
-//       } else {
-//         element.cacheMiss();
-//       }
-//     })
-//     .catch(console.error);
-// }
+function saveBook(req, res) {
+  let {title, author, isbn, description, img_url} = req.body;
+  let SQL = 'INSERT INTO books(title, author, isbn, description, img_url) VALUES ($1,$2,$3,$4,$5);';
+  let values =[title, author, isbn, description, img_url];
 
-
-// Book.prototype.save = function () {
-//   let SQL = `
-//   INSERT INTO bookdata
-//     (search_query,title,author,publisher,description)
-//     VALUES($1,$2,$3,$4,$5)
-//     RETURNING id;`;
-//   let values = Object.values(this);
-//   console.log('book values', values);
-//   return client.query(SQL, values);
-// }
+  return client.query(SQL, values)
+    .then(res.redirect('/'))
+    .catch(err => console.error(err));
+}
 
 app.get('*', (req, res) => res.status(404).send('Page Not Found'));
 app.listen(PORT, () => {
