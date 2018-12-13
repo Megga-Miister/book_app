@@ -1,6 +1,12 @@
 body {
   background-color: #888;
   color: #ffff;
+  display: grid;
+  width: 100vw;
+  margin-left: auto;
+  margin-right: auto;
+  /* font-family: 'Nunito', sans-serif; */
+  font-size: 1.5em;
 }
 
 div {
@@ -32,21 +38,32 @@ header {
   width: 4vw;
   height: 4vw;
   padding-right: 2vw;
+  position: relative;
+  margin-top: -4vw;
 }
 #radio {
   background-color: #666;
   border-radius: .5em;
-  width: 350px;
-  height: 60x;
-  line-height: 4vw;
-  padding: 5vw;
+  margin-left: 29vw;
+    margin-top: 3vw;
+    width: 33vw;
+    line-height: 4vw;
+    position: relative;
+    padding: 5vw;
 }
 #submission{
   background-color: #000;
   color: white;
   border-radius: .5em;
-  width: 350px;
-  height: 60px;
+  /* height: 60px; */
+  margin-left: 1vw;
+  margin-top: 3vw;
+  width: 43vw;
+  line-height: 4vw;
+  position: relative;
+  padding: 5vw;
+  text-align: center
+  
 }
 #searchlayout {
   text-align: center;
