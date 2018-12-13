@@ -24,9 +24,7 @@ app.get('/new', (req, res) => {
 app.get('/', getBooks);
 app.get('/books/details/:id', getOneBook);
 app.post('/search',searchBooks);
-app.post('/s', saveBook);
-app.get('/views/pages/searches/search');
-app.get('/views/pages/searches/s');
+app.post('/', saveBook);
 let books =[];
 
 function Book(query) {
@@ -92,17 +90,19 @@ function getOneBook(req, res) {
 }
 
 function saveBook(req, res) {
+  console.log('saveBook hit')
   let {title, author, isbn, description, img_url} = req.body;
   let SQL = `INSERT INTO books(title, author, isbn, description, img_url) VALUES ($1,$2,$3,$4,$5);`;
   let values =[title, author, isbn, description, img_url];
+  console.log('book sql values', values);
   return client.query(SQL, values)
     .then(res.redirect('/'))
     .catch(err => errorHandler(err, res));
 }
 function errorHandler(err, res) {
-  res.render('views/pages/error', {error: 'https://http.cat/404'});
+  res.render('/error', {error: 'PAGE NOT FOUND'});
 }
-
+// https://http.cat/404
 app.get('*', (req, res) => res.status(404).send('Page Not Found'));
 app.listen(PORT, () => {
   console.log(`listening on PORT: ${PORT}`);
