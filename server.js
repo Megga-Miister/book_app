@@ -11,8 +11,8 @@ require('dotenv').config();
 
 const client = new pg.Client(process.env.DATABASE_URL);
 client.connect();
-client.on('error', err=> console.error(err));
-app.use(express.urlencoded({extended: true}));
+client.on('error', err => console.error(err));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static('./public'));
 app.use(cors());
 app.set('view engine', 'ejs');
@@ -23,26 +23,28 @@ app.get('/new', (req, res) => {
 });
 app.get('/', getBooks);
 app.get('/books/details/:id', getOneBook);
-app.post('/search',searchBooks);
+app.post('/search', searchBooks);
 app.post('/', saveBook);
-let books =[];
+let books = [];
 
 function Book(query) {
   // this.search_query = query;
   this.title = query.volumeInfo.title;
   this.author = query.volumeInfo.authors;
-  this.isbn=parseInt(query.volumeInfo.industryIdentifiers[0].identifier);
+  this.isbn = parseInt(query.volumeInfo.industryIdentifiers[0].identifier);
   this.description = query.volumeInfo.description;
   this.img_url = query.volumeInfo.imageLinks.thumbnail;
   books.push(this);
 }
 
 
-function searchBooks (req, res) {
+function searchBooks(req, res) {
   const bookHandler = req.body;
 
   Book.fetchBooks(bookHandler)
-    .then( books => {
+    .then(books => {
+      console.log('fetch handler', bookHandler);
+      console.log('book object', books);
       res.render('pages/searches/show', { booklist: books });
     });
 }
@@ -75,6 +77,7 @@ Book.fetchBooks = function (data) {
 
 function getBooks(req, res) {
   let SQL = `SELECT * from books;`;
+  console.log('sql get books', client.query(SQL));
   return client.query(SQL)
     .then(results => res.render('pages/index', { bookshelf: results.rows }))
     .catch(err => errorHandler(err, res));
@@ -91,20 +94,17 @@ function getOneBook(req, res) {
 
 function saveBook(req, res) {
   console.log('saveBook hit')
-  let {title, author, isbn, description, img_url} = req.body;
+  let { title, author, isbn, description, img_url } = req.body;
   let SQL = `INSERT INTO books(title, author, isbn, description, img_url) VALUES ($1,$2,$3,$4,$5);`;
-  let values =[title, author, isbn, description, img_url];
+  let values = [title, author, isbn, description, img_url];
   console.log('book sql values', values);
-  console.log('sequel console',client.query(SQL, values));
-  return client.query(SQL, values)
-    .then(res.render('/'))
+  console.log('sequel console', client.query(SQL, values));
+  client.query(SQL, values)
+    .then(res.redirect(`/`))
     .catch(err => errorHandler(err, res));
 }
-
-// .then( result => res.redirect(`/books/${result.rows[0].id}?newBook=true`))
-
 function errorHandler(err, res) {
-  res.render('/error', {error: 'PAGE NOT FOUND'});
+  res.render('/error', { error: 'PAGE NOT FOUND' });
 }
 // https://http.cat/404
 app.get('*', (req, res) => res.status(404).send('Page Not Found'));
