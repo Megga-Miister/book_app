@@ -1,5 +1,6 @@
 DROP DATABASE book_app;
-DROP TABLE IF EXISTS books;
+CREATE DATABASE book_app;
+\c book_app;
 
 CREATE TABLE books (
   id SERIAL PRIMARY KEY,
