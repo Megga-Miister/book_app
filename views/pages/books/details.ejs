@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-      <%- include('../.././layout/head') %>
+      <%- include('../../layout/head') %>
         <!-- <link rel="stylesheet" href="../../styles/reset.css"/>
         <link rel="stylesheet" href="../../styles/base.css"/> -->
       <body>
-      <%- include('../.././layout/header') %>
+      <%- include('../../layout/header') %>
 
   <main>
       <div id="title">My Book Shelf</div>
@@ -12,15 +12,18 @@
           <img src="<%= singlebook.img_url%>" class="bImage">
           <p>Title: <%= singlebook.title %></p>
           <p>Author: <%= singlebook.author%></p>
-          <p>Description: <%=singlebook.description%></p>
+          <p>Description: <%= singlebook.description%></p>
           <a href="/">View Home Bookshelf</a>
-          <button class="selectbut <%=singlebook.id %>">Edit Book</button>
-          <form action="/delete/<%=singlebook.id %>" class="edit-form hidden" method="post">
-            </form>
+          <button class="selectbut <%= singlebook.id %>">Edit Book</button>
+          <form action="/delete/<%= singlebook.id %>" class="edit-form hidden" method="post">
+          </form>
           </div>
-          <-% include('edit', {formAction: 'edit', book: book}) %>
+          <div id="book" data-id="<%= singlebook.id %>">
+          <%- include('edit', {formAction: 'edit', book: singlebook}) %>
+        </div>
   </main>
   <footer>
   </footer>
+  
 </body>
 </html>
