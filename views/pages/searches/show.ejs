@@ -19,7 +19,7 @@
           <p>ISBN: <%= element.isbn%></p>
           <p>Description: <%=element.description%></p>
           <button class="selectbut <%=element.isbn %>">Select Book</button>
-       <form action="/"  class="edit-form hidden" method="POST">
+       <form action="/"  class="edit-form nothidden hidden" method="POST">
         <input type="hidden" name="img_url" value="<%- element.img_url%>">
           <input type="text" name="title" value="<%- element.title%>" placeholder="edit title">
           <input type="text" name="author" value="<%- element.author%>" placeholder="edit author">

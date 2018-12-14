@@ -1,6 +1,7 @@
 'use strict';
+console.log('JS Running');
 $('.selectbut').on('click', function() {
-  $('.hidden').toggleClass('hidden');
+  $('.nothidden').toggleClass('hidden');
 });
 
 $('.deletebut').on('click', function() {
