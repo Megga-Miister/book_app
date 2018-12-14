@@ -10,9 +10,9 @@
       <div id="title">My Book Shelf</div>
         <div id="singlebook" data-id="<%= singlebook.id%>">
           <img src="<%= singlebook.img_url%>" class="bImage">
-          <p>Title: <%= singlebook.title %></p>
-          <p>Author: <%= singlebook.author%></p>
-          <p>Description: <%= singlebook.description%></p>
+          <p id="titleA">Title: <%= singlebook.title %></p>
+          <p id="author">Author: <%= singlebook.author%></p>
+          <p id="description">Description: <%= singlebook.description%></p>
           <a href="/">View Home Bookshelf</a>
         </div>
           <button class="deletebut <%= singlebook.id %>">Edit or Delete Book</button>

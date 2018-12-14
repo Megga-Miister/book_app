@@ -11,10 +11,10 @@
       <% bookshelf.forEach( element => { %>
        <div>
           <img src="<%= element.img_url%>" class="bImage">
-          <p>Title: <%= element.title %></p>
-          <p>Author: <%= element.author%></p>
-          <p>ISBN: <%= element.isbn%></p>
-          <p>Description: <%=element.description%></p>
+          <p id="titleA">Title: <%= element.title %></p>
+          <p id="author">Author: <%= element.author%></p>
+          <p id="author">ISBN: <%= element.isbn%></p>
+          <p id="description">Description: <%=element.description%></p>
           <a href="/books/details/<%= element.id %>">View Details</a>
           </div>
       <%})%>
