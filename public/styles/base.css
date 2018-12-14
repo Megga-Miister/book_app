@@ -75,3 +75,63 @@ header {
 .hidden {
   display: none;
 }
+
+img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  border: 3px solid black;
+  border-radius: 5%;
+  box-shadow: .3vw .5vw rgb(105, 105, 103);
+  width: 15%;
+}
+
+#titleA{
+  text-align: center;
+  font-family: 'Paytone One', sans-serif;
+  font-size: 3vw;
+  width: 50%;
+  margin-left: 25%;
+  margin-top: .5%;
+  margin-bottom: .5%;
+  border: 3px solid black;
+  border-radius: 5%;
+  box-shadow: .3vw .5vw rgb(105, 105, 103);
+}
+
+#author{
+  text-align: center;
+  font-size: 2.5vw;
+  width: 50%;
+  margin-left: 25%;
+  margin-top: .5%;
+  margin-bottom: .5%;
+  border: 3px solid black;
+  border-radius: 5%;
+  box-shadow: .3vw .5vw rgb(105, 105, 103);
+}
+#description{
+  text-align: justify;
+  font-size: 1.2vw;
+  width: 50%;
+  margin-left: 25%;
+  margin-top: .6%;
+  margin-bottom: .6%;
+  border: 3px solid black;
+  border-radius: 5%;
+  box-shadow: .3vw .5vw rgb(105, 105, 103);
+  padding: 7px;
+}
+main {
+
+  width: 60%;
+  margin-left: 25%;
+  margin-top: .6%;
+  margin-bottom: .6%;
+  border: 3px solid black;
+  /* border-radius: 5%; */
+  box-shadow: .3vw .5vw rgb(105, 105, 103);
+  /* padding: 7px; */
+}
