@@ -15,7 +15,7 @@ app.use(cors());
 
 /////// methodoverride goes here////////////
 app.use(methodOverride((req, res) => {
-  if(req.body && typeof req.body === 'object' && '_method' in req.body) {
+  if (req.body && typeof req.body === 'object' && '_method' in req.body) {
     let method = req.body._method;
     delete req.body_method;
     return method;
@@ -40,8 +40,8 @@ app.get('/', getBooks);
 app.get('/books/details/:id', getOneBook);
 app.post('/search', searchBooks);
 app.post('/', saveBook);
-app.put('/', editBook);
-// app.post('/', deleteBook);
+app.put('/books/details/:id', editBook);
+app.post('/delete/:id', deleteBook);
 
 function Book(query) {
   this.img_url = query.volumeInfo.imageLinks.thumbnail;
@@ -108,10 +108,9 @@ function getOneBook(req, res) {
 
 function saveBook(req, res) {
   console.log('saveBook hit')
-  let { img_url, title, author, isbn, description} = req.body;
+  let { img_url, title, author, isbn, description } = req.body;
   let SQL = `INSERT INTO books(img_url, title, author, isbn, description) VALUES ($1,$2,$3,$4,$5) RETURNING id;`;
   let values = [img_url, title, author, isbn, description];
-  console.log('edited book alues', values);
   client.query(SQL, values)
     .then(res.redirect(`/`))
     .catch(err => errorHandler(err, res));
@@ -119,19 +118,20 @@ function saveBook(req, res) {
 
 function editBook(req, res) {
   console.log('editBook hit')
-  let { img_url, title, author, isbn, description} = req.body;
+  let { img_url, title, author, isbn, description } = req.body;
   let SQL = `UPDATE books SET img_url=$1, title=$2, author=$3, isbn=$4, description=$5 WHERE id=$6;`;
   let values = [img_url, title, author, isbn, description, req.params.id];
+  console.log('edited book alues', values);
   client.query(SQL, values)
-    .then(res.redirect(`/`))
+    .then(res.redirect(`${req.params.id}`))
     .catch(err => errorHandler(err, res));
 }
-
 function deleteBook(req, res) {
-  let SQL = `SELECT * from books WHERE id=$1;`;
+  let SQL = `DELETE FROM books WHERE id=$1;`;
   let values = [req.params.id];
-  return client.query(SQL, values)
-    .then(res.redirect(`{req.params.id}`))
+  console.log('hit delete book', values);
+  client.query(SQL, values)
+    .then(res.redirect(`/`))
     .catch(err => errorHandler(err, res));
 }
 
