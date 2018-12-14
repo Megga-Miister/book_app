@@ -15,25 +15,31 @@ client.on('error', err => console.error(err));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('./public'));
 app.use(cors());
+
+/////// methodoverride goes here////////////
+
+
+
+
 app.set('view engine', 'ejs');
 
 
 app.get('/new', (req, res) => {
   res.render('../views/pages/searches/new');
 });
+
+
 app.get('/', getBooks);
 app.get('/books/details/:id', getOneBook);
 app.post('/search', searchBooks);
 app.post('/', saveBook);
-let books = [];
 
 function Book(query) {
-  this.title = query.volumeInfo.title;
-  this.author = query.volumeInfo.authors;
-  this.isbn = parseInt(query.volumeInfo.industryIdentifiers[0].identifier);
-  this.description = query.volumeInfo.description;
   this.img_url = query.volumeInfo.imageLinks.thumbnail;
-  books.push(this);
+  this.title = query.volumeInfo.title || 'N/A';
+  this.author = query.volumeInfo.authors || 'N/A';
+  this.isbn = parseInt(query.volumeInfo.industryIdentifiers[0].identifier) || 'N/A';
+  this.description = query.volumeInfo.description || 'N/A';
 }
 
 
@@ -43,7 +49,6 @@ function searchBooks(req, res) {
   Book.fetchBooks(bookHandler)
     .then(books => {
       console.log('fetch handler', bookHandler);
-      console.log('book object', books);
       res.render('pages/searches/show', { booklist: books });
     });
 }
@@ -93,11 +98,9 @@ function getOneBook(req, res) {
 
 function saveBook(req, res) {
   console.log('saveBook hit')
-  let { title, author, isbn, description, img_url } = req.body;
-  let SQL = `INSERT INTO books(title, author, isbn, description, img_url) VALUES ($1,$2,$3,$4,$5);`;
-  let values = [title, author, isbn, description, img_url];
-  console.log('book sql values', values);
-  console.log('sequel console', client.query(SQL, values));
+  let { img_url, title, author, isbn, description} = req.body;
+  let SQL = `INSERT INTO books(img_url, title, author, isbn, description) VALUES ($1,$2,$3,$4,$5) RETURNING id;`;
+  let values = [img_url, title, author, isbn, description];
   client.query(SQL, values)
     .then(res.redirect(`/`))
     .catch(err => errorHandler(err, res));
@@ -105,6 +108,11 @@ function saveBook(req, res) {
 function errorHandler(err, res) {
   res.render('/error', { error: 'PAGE NOT FOUND' });
 }
+
+// function deleteSQLbyID(result) {
+//   const deleteSQL = `DELETE from books WHERE location_id=${result.rows[0].id};`;
+//   return client.query(deleteSQL);
+// }
 // https://http.cat/404
 app.get('*', (req, res) => res.status(404).send('Page Not Found'));
 app.listen(PORT, () => {

@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <%- include('../../layout/head') %>
         <title>Book App</title>
         <link rel="stylesheet" href="/styles/reset.css"/>
         <link rel="stylesheet" href="styles/base.css"/>
       </head>
       <body>
         <header>
+            <%- include('../../layout/header') %>
           <img src="/styles/images/ham.png" id="ham">
           <div>Best Books!</div>
         </header>
@@ -21,16 +23,16 @@
           <p>ISBN: <%= element.isbn%></p>
           <p>Description: <%=element.description%></p>
           <button class="selectbut <%=element.isbn %>">Select Book</button>
-       </div>
-
-       <form action="/" class="edit-form hidden" method="post">
+       <!--  /books -->
+       <form action="/"  class="edit-form hidden" method="POST">
+        <input type="hidden" name="img_url" value="<%- element.img_url%>">
           <input type="text" name="title" value="<%- element.title%>" placeholder="edit title">
           <input type="text" name="author" value="<%- element.author%>" placeholder="edit author">
           <input type="hidden" name="isbn" value="<%- element.isbn%>">
           <textarea name="description" placeholder="edit description" cols="25" rows="8"><%- element.description%></textarea>
-          <input type="hidden" name="img_url" value="<%- element.img_url%>">
-          <button type="submit" class="savebut">Save to Bookshelf</button>
+          <button class="savebut">Save to Bookshelf</button>
          </form>
+      </div>
       <%})%>
       </div>      
   </main>
