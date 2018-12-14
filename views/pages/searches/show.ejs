@@ -7,11 +7,7 @@
         <link rel="stylesheet" href="styles/base.css"/>
       </head>
       <body>
-        <header>
             <%- include('../../layout/header') %>
-          <img src="/styles/images/ham.png" id="ham">
-          <div>Best Books!</div>
-        </header>
   <main>
       <div id="title">Search Results</div>
     <div>
@@ -23,7 +19,6 @@
           <p>ISBN: <%= element.isbn%></p>
           <p>Description: <%=element.description%></p>
           <button class="selectbut <%=element.isbn %>">Select Book</button>
-       <!--  /books -->
        <form action="/"  class="edit-form hidden" method="POST">
         <input type="hidden" name="img_url" value="<%- element.img_url%>">
           <input type="text" name="title" value="<%- element.title%>" placeholder="edit title">

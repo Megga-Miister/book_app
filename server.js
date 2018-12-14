@@ -5,6 +5,7 @@ const app = express();
 const superagent = require('superagent');
 const cors = require('cors');
 const pg = require('pg');
+const methodOverride = require('method-override');
 const PORT = process.env.PORT || 3000;
 
 require('dotenv').config();
@@ -17,7 +18,13 @@ app.use(express.static('./public'));
 app.use(cors());
 
 /////// methodoverride goes here////////////
-
+app.use(methodOverride((req, res) => {
+  if(req.body && typeof req.body === 'object' && '_method' in req.body) {
+    let method = req.body._method;
+    delete req.body_method;
+    return method;
+  }
+}));
 
 
 
@@ -33,6 +40,8 @@ app.get('/', getBooks);
 app.get('/books/details/:id', getOneBook);
 app.post('/search', searchBooks);
 app.post('/', saveBook);
+// app.put('/edit/:id', editBook);
+// app.post('/', deleteBook);
 
 function Book(query) {
   this.img_url = query.volumeInfo.imageLinks.thumbnail;
@@ -82,6 +91,7 @@ Book.fetchBooks = function (data) {
 function getBooks(req, res) {
   let SQL = `SELECT * from books;`;
   console.log('sql get books', client.query(SQL));
+  // let values = [req.params.id];
   return client.query(SQL)
     .then(results => res.render('pages/index', { bookshelf: results.rows }))
     .catch(err => errorHandler(err, res));
@@ -105,14 +115,29 @@ function saveBook(req, res) {
     .then(res.redirect(`/`))
     .catch(err => errorHandler(err, res));
 }
+
+function editBook(req, res) {
+  console.log('saveBook hit')
+  let { img_url, title, author, isbn, description} = req.body;
+  let SQL = `UPDATE books(img_url, title, author, isbn, description) VALUES ($1,$2,$3,$4,$5) WHERE id =$6;`;
+  let values = [img_url, title, author, isbn, description, req.params.id];
+  client.query(SQL, values)
+    .then(res.redirect(`$/{req.params.id}`))
+    .catch(err => errorHandler(err, res));
+}
+
+function deleteBook(req, res) {
+  let SQL = `SELECT * from books WHERE id=$1;`;
+  let values = [req.params.id];
+  return client.query(SQL, values)
+    .then(res.redirect(`$/{req.params.id}`))
+    .catch(err => errorHandler(err, res));
+}
+
 function errorHandler(err, res) {
   res.render('/error', { error: 'PAGE NOT FOUND' });
 }
 
-// function deleteSQLbyID(result) {
-//   const deleteSQL = `DELETE from books WHERE location_id=${result.rows[0].id};`;
-//   return client.query(deleteSQL);
-// }
 // https://http.cat/404
 app.get('*', (req, res) => res.status(404).send('Page Not Found'));
 app.listen(PORT, () => {
