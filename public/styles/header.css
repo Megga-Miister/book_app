@@ -1,0 +1,69 @@
+  #hamburger {
+  left: 100%;
+  }
+  a {
+  text-decoration: none;
+  color: rgb(207, 15, 15);
+  transition: color 0.3s ease;
+  }
+  span {
+    background-color: #fff;
+  }
+  a:hover {
+    color: #000;
+  }
+  #nav{
+    position: absolute;
+    width: 150px;
+    margin: -100px 0 0 -50px;
+    padding: 50px;
+    padding-top: 50px;
+    background: #222;
+    border-radius: .5em;
+    list-style-type: none;
+    transform-origin: 0% 0%;
+    transform: translate(-100%, 0);
+    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+    }
+  
+    #nav li {
+    padding: 10px 0;
+    font-size: 22px;
+    }
+    #navToggle input:checked ~ ul {
+    transform: none;
+    }
+    #navToggle {
+    display: block;
+    position: relative;
+    top: 50px;
+    left: 50px;
+    z-index: 1;
+  }
+
+  #navToggle input {
+    display: block;
+    width: 40px;
+    height: 32px;
+    position: absolute;
+    top: -7px;
+    left: -5px;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 2;
+  }
+  
+  #navToggle span {
+    display: block;
+    width: 33px;
+    height: 4px;
+    margin-bottom: 5px;
+    position: relative;
+    background: #fff;
+    border-radius: 3px;
+    z-index: 1;
+    transform-origin: 4px 0px;
+  }
+
+
+
