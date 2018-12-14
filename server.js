@@ -8,11 +8,7 @@ const pg = require('pg');
 const methodOverride = require('method-override');
 const PORT = process.env.PORT || 3000;
 
-require('dotenv').config();
 
-const client = new pg.Client(process.env.DATABASE_URL);
-client.connect();
-client.on('error', err => console.error(err));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('./public'));
 app.use(cors());
@@ -25,7 +21,11 @@ app.use(methodOverride((req, res) => {
     return method;
   }
 }));
+require('dotenv').config();
 
+const client = new pg.Client(process.env.DATABASE_URL);
+client.connect();
+client.on('error', err => console.error(err));
 
 
 app.set('view engine', 'ejs');
@@ -40,7 +40,7 @@ app.get('/', getBooks);
 app.get('/books/details/:id', getOneBook);
 app.post('/search', searchBooks);
 app.post('/', saveBook);
-// app.put('/edit/:id', editBook);
+app.put('/', editBook);
 // app.post('/', deleteBook);
 
 function Book(query) {
@@ -111,18 +111,19 @@ function saveBook(req, res) {
   let { img_url, title, author, isbn, description} = req.body;
   let SQL = `INSERT INTO books(img_url, title, author, isbn, description) VALUES ($1,$2,$3,$4,$5) RETURNING id;`;
   let values = [img_url, title, author, isbn, description];
+  console.log('edited book alues', values);
   client.query(SQL, values)
     .then(res.redirect(`/`))
     .catch(err => errorHandler(err, res));
 }
 
 function editBook(req, res) {
-  console.log('saveBook hit')
+  console.log('editBook hit')
   let { img_url, title, author, isbn, description} = req.body;
-  let SQL = `UPDATE books(img_url, title, author, isbn, description) VALUES ($1,$2,$3,$4,$5) WHERE id =$6;`;
+  let SQL = `UPDATE books SET img_url=$1, title=$2, author=$3, isbn=$4, description=$5 WHERE id=$6;`;
   let values = [img_url, title, author, isbn, description, req.params.id];
   client.query(SQL, values)
-    .then(res.redirect(`$/{req.params.id}`))
+    .then(res.redirect(`/`))
     .catch(err => errorHandler(err, res));
 }
 
@@ -130,12 +131,12 @@ function deleteBook(req, res) {
   let SQL = `SELECT * from books WHERE id=$1;`;
   let values = [req.params.id];
   return client.query(SQL, values)
-    .then(res.redirect(`$/{req.params.id}`))
+    .then(res.redirect(`{req.params.id}`))
     .catch(err => errorHandler(err, res));
 }
 
 function errorHandler(err, res) {
-  res.render('/error', { error: 'PAGE NOT FOUND' });
+  res.render('pages/error', { error: 'https://http.cat/404' });
 }
 
 // https://http.cat/404
