@@ -1,32 +1,35 @@
 <!DOCTYPE html>
 <html>
       <%- include('../../layout/head') %>
-        <!-- <link rel="stylesheet" href="../../styles/reset.css"/>
-        <link rel="stylesheet" href="../../styles/base.css"/> -->
+        <link rel="stylesheet" href="../../styles/reset.css"/>
+        <link rel="stylesheet" href="../../styles/base.css"/>
+        <link rel="stylesheet" href="../../styles/modules.css"/>
+        <link rel="stylesheet" href="../../styles/header.css"/>
       <body>
       <%- include('../../layout/header') %>
-
   <main>
-      <div id="title">My Book Shelf</div>
-        <div id="singlebook" data-id="<%= singlebook.id%>">
+      <div id="title">Book Details</div>
+        <div id="singlebook">
+        <div  data-id="<%= singlebook.id%>">
           <img src="<%= singlebook.img_url%>" class="bImage">
           <p id="titleA">Title: <%= singlebook.title %></p>
           <p id="author">Author: <%= singlebook.author%></p>
-          <p id="description">Description: <%= singlebook.description%></p>
-          <a href="/">View Home Bookshelf</a>
-        </div>
-          <button class="deletebut <%= singlebook.id %>">Edit or Delete Book</button>
-          <div class="details-form unhidden">
-          <form action="/delete/<%= singlebook.id %>" class="details-form" method="post">
-            <button type="submit">Delete Book</button>
-          </form>
+          <p id="isbn">ISBN: <%= singlebook.isbn%></p>
+          <p id="descrip">Description: <%= singlebook.description%></p>
+         </div>
+         <form action="/delete/<%= singlebook.id %>" class="details-form" method="post">
+           <button class="delete2" type="submit">Delete Book</button>
+         </form>
+          <button class="deletebut <%= singlebook.id %>">Edit Book</button>
+                <div class="details-form unhidden hidden">
            <%- include('edit', {formAction: 'edit', book: singlebook}) %>
+        </div>
         </div>
   </main>
   <footer>
   </footer>
   <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script src="/js/app.js"></script>
+  <script src="../../js/app.js"></script>
 </body>
 </html>

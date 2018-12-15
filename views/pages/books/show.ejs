@@ -14,10 +14,10 @@
       <div id="title">My Book Shelf</div>
     <div>
       <% bookdetails.forEach( element => { %>
-       <div>
+       <div id="divcontain">
           <img src="<%= element.img_url%>" class="bImage">
-          <p>Title: <%= element.title %></p>
-          <p>Author: <%= element.author%></p>
+          <p id="titleA">Title: <%= element.title %></p>
+          <p id="author">Author: <%= element.author%></p>
           <p>Description: <%=element.description%></p>
        </div>
       <%})%>
