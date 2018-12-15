@@ -4,7 +4,7 @@
         <%- include('../../layout/head') %>
         <title>Book App</title>
         <link rel="stylesheet" href="/styles/reset.css"/>
-        <link rel="stylesheet" href="styles/base.css"/>
+        <link rel="stylesheet" href="/styles/base.css"/>
       </head>
       <body>
             <%- include('../../layout/header') %>
@@ -12,12 +12,13 @@
       <div id="title">Search Results</div>
     <div>
       <% booklist.forEach( element => { %>
-       <div id="divcontain">
+       <div id="divcontainresults">
           <img src="<%= element.img_url%>" class="bImage">
           <p id="titleA">Title: <%= element.title %></p>
           <p id="author">Author: <%= element.author%></p>
           <div id="descrip">Description: <%=element.description%></div>
           <button class="selectbut <%=element.isbn %>">Select Book</button>
+          <div id="edit-contain">
        <form action="/"  class="edit-form nothidden hidden" method="POST">
         <input type="hidden" name="img_url" value="<%- element.img_url%>">
           <input type="text" name="title" value="<%- element.title%>" placeholder="edit title">
@@ -25,7 +26,8 @@
           <input type="text" name="isbn" value="<%- element.isbn%>">
           <textarea name="description" placeholder="edit description" cols="25" rows="8"><%- element.description%></textarea>
           <button class="savebut">Save to Bookshelf</button>
-         </form>
+        </div>
+      </form>
       </div>
       <%})%>
       </div>      

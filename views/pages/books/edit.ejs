@@ -1,3 +1,4 @@
+<div id="details-edit">
 <form action = "<%=`/books/details/${book.id}`%>"  method = "post">
   <input type="hidden" name="_method" value="put">
   <input type="hidden" name="img_url" value="<%- book.img_url%>">
@@ -6,5 +7,6 @@
   <input type="text" name="isbn" value="<%= book.isbn %>" placeholder="<%= book.isbn %>"/>
   <textarea type="text" name="description"value="<%= book.description %>" cols="25" rows="8" placeholder="<%= book.description %>"><%= book.description %></textarea>
   <input type="hidden" name="image_url" value="<%= book.image_url %>" >
-  <button type = submit class="editbut">Edit Book</button>
+  <button type = submit class="editbut">Save Edits</button>
 </form>
+</div>

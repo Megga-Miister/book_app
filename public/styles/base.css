@@ -12,9 +12,6 @@ div {
   text-align: center;
 }
 
-/* form {
-  text-align: center;
-} */
 #title {
   width: 100%;
   padding-top: 2vw;
@@ -27,32 +24,39 @@ div {
 
 #searchbox {
   border-radius: .5em;
-  width: 44vw;
+  width: 70vw;
   margin-right: 2vw;
   margin-left: 2vw;
-  margin-top: 3vw;
+  margin-top: 6vw;
   position: relative;
   padding: 5vw;
 }
+#label {
+  padding-right: 200px;
+}
 #radio {
+  text-align: left;
+  color: #000;
+  font-weight: bold;
   background-color: #666;
   border-radius: .5em;
-  margin-right: 3vw;
-  margin-left: 3vw;
-  margin-top: 3vw;
+  margin-right: 8vw;
+  margin-left: 8vw;
+  margin-top: 5vw;
   position: relative;
-  padding: 5vw;
+  padding: 4vw;
 }
 #submission{
   background-color: #000;
-  color: white;
+  color: #fff;
   border-radius: .5em;
-  width: 54vw;
+  width: 82vw;
   margin-right: 2vw;
-  margin-left: 2vw;
-  margin-top: 3vw;
-  position: relative;
+  margin-left: 4vw;
+  margin-top: 5vw;
+  margin-bottom: 0;
   padding: 5vw; 
+  font-weight: bold;
 }
 #searchlayout {
   text-align: center;
@@ -64,6 +68,7 @@ div {
 
 img{
   height: 80vw;
+  width: 60vw;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -120,7 +125,7 @@ img{
 }
 #viewdeets {
     background-color: #000;
-    color: white;
+    color: #fff;
     border-radius: .2em;
     width: 51vw;
     margin-right: 2vw;
@@ -128,6 +133,7 @@ img{
     margin-top: 10vw;
     margin-bottom: 0;
     padding: 5vw; 
+    font-weight: bold;
 }
 #descrip {
   overflow-x: hidden;
@@ -137,3 +143,114 @@ img{
   width: 60vw;
   height: 20vw;
 }
+#singlebook {
+
+    height: 100%;
+    width: 75vw;
+    margin-left: 9vw;
+    margin-top: 6vw;
+    background-color: #bbb;
+    margin-bottom: .6%;
+    border: 3px solid #444;
+    border-radius: .2em;
+    box-shadow: .3vw .5vw .3vw .5vw #222;
+    padding-top: 7px;
+    margin-bottom:10vw;
+  }
+  #divcontainresults {
+    height: 90%;
+    width: 75vw;
+    margin-left: 9vw;
+    margin-top: 10vw;
+    background-color: #bbb;
+    margin-bottom: .6%;
+    border: 3px solid #444;
+    border-radius: .2em;
+    box-shadow: .3vw .5vw .3vw .5vw #222;
+    padding-top: 7px;
+  }
+  .selectbut{
+    background-color: #000;
+    color: #fff;
+    border-radius: .5em;
+    width: 80%;
+    margin-right: 2vw;
+    margin-left: 4vw;
+    margin-top: 5vw;
+    margin-bottom: 4vw;;
+    padding: 5vw; 
+    font-weight: bold;
+  }
+  .edit-form {
+     height: 100%;
+    width: 60vw;
+    margin-left: 7vw;
+    background-color: #444;
+    margin-bottom: 2vw;
+    border: 3px solid #bbb;
+    border-radius: .2em;
+    box-shadow: .3vw .5vw .3vw .5vw #000;
+    font-weight: bold;
+   }
+
+  .savebut{
+    background-color: #fff;
+    color: #000;
+    border-radius: .5em;
+    width: 60%;
+    margin-right: 2vw;
+    margin-left: 4vw;
+    margin-top: 5vw;
+    margin-bottom: 4vw;;
+    padding: 2vw; 
+    font-weight: bold;
+  }
+  .deletebut{
+    background-color: #000;
+    color: #fff;
+    border-radius: .5em;
+    width: 60%;
+    margin-right: 2vw;
+    margin-left: 4vw;
+    margin-top: 1vw;
+    margin-bottom: 4vw;;
+    padding: 2vw; 
+    font-weight: bold;
+  }
+  .delete2 {
+    background-color: rgb(180, 1, 1);
+    color: #000;
+    border-radius: .5em;
+    width: 60%;
+    margin-right: 2vw;
+    margin-left: 4vw;
+    margin-top: 3vw;
+    margin-bottom: 1vw;;
+    padding: 2vw; 
+    font-weight: bold;
+  }
+  #details-edit {
+      height: 100%;
+     width: 60vw;
+     padding-top: 2vw;
+     margin-left: 7vw;
+     background-color: #444;
+     margin-bottom: 2vw;
+     border: 3px solid #bbb;
+     border-radius: .2em;
+     box-shadow: .3vw .5vw .3vw .5vw #000;
+    }
+    .editbut {
+      font-weight: bold;
+        background-color: #fff;
+        color: #000;
+        border-radius: .5em;
+        width: 60%;
+        margin-right: 2vw;
+        margin-left: 4vw;
+        margin-top: 1vw;
+        margin-bottom: 4vw;;
+        padding: 2vw; 
+    }
+
+ 
