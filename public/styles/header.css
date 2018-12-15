@@ -30,15 +30,15 @@
   }
   #nav{
     position: absolute;
-    width: 440px;
-    margin: 0 -100px 0 -400px;
+    width: 420px;
+    margin: 0 -120px 0 -400px;
     padding: 15px;
     opacity: .95;
     background: #222;
     border-radius: .5em;
     list-style-type: none;
     transform-origin: 0% 0%;
-    transform: translate(0, -250%);
+    transform: translate(0, -260%);
     transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
     }
   
