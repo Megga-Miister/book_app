@@ -1,0 +1,16 @@
+ /* FOOTER */
+
+ .footradio {
+  padding-right: 10vw;
+}
+#footcontain {
+  position: fixed;
+  width: 100%;
+  height: 12vw;
+  background-color: #000;
+  bottom: 0px;
+  }
+  footer {
+    height: auto !important;
+    min-height: 100%;
+  }
