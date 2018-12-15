@@ -65,8 +65,8 @@ function searchBooks(req, res) {
 Book.fetchBooks = function (data) {
   let search = data.searchBook;
   let query = data.search;
-  const authorURL = `https://www.googleapis.com/books/v1/volumes?q=${search}:intitle=${search}`;
-  const titleURL = `https://www.googleapis.com/books/v1/volumes?q=${search}:inauthor=${search}`;
+  const titleURL = `https://www.googleapis.com/books/v1/volumes?q=intitle:${search}`;
+  const authorURL = `https://www.googleapis.com/books/v1/volumes?q=inauthor:${search}`;
   if (query === 'author') {
     return superagent.get(authorURL)
       .then(result => {

@@ -5,11 +5,7 @@ body {
   background-color: #888;
   color: #ffff;
   display: grid;
-  width: 100vw;
-  margin-left: auto;
-  margin-right: auto;
-  /* font-family: 'Nunito', sans-serif; */
-  font-size: 1.5em;
+  width: 100%;
 }
 
 div {
@@ -19,54 +15,44 @@ div {
 /* form {
   text-align: center;
 } */
-
 #title {
   width: 100%;
-  height: 6vw;
+  padding-top: 2vw;
+  font-size: 5vw;
+  height: 10vw;
+  text-align: center;
   background-color: #444;
 }
-header {
-  width: 100%;
-  height: 6vw;;
-  background-color: #000;
-  font-size: 6vw;
-  padding-top: 5vw;
-}
-#header {
-  text-align: left;
-  padding: 2vw;
-}
-#ham {
-  float: right;
-  width: 4vw;
-  height: 4vw;
-  padding-right: 2vw;
+
+
+#searchbox {
+  border-radius: .5em;
+  width: 44vw;
+  margin-right: 2vw;
+  margin-left: 2vw;
+  margin-top: 3vw;
   position: relative;
-  margin-top: -4vw;
+  padding: 5vw;
 }
 #radio {
   background-color: #666;
   border-radius: .5em;
-  margin-left: 29vw;
-    margin-top: 3vw;
-    width: 33vw;
-    line-height: 4vw;
-    position: relative;
-    padding: 5vw;
+  margin-right: 3vw;
+  margin-left: 3vw;
+  margin-top: 3vw;
+  position: relative;
+  padding: 5vw;
 }
 #submission{
   background-color: #000;
   color: white;
   border-radius: .5em;
-  /* height: 60px; */
-  margin-left: 1vw;
+  width: 54vw;
+  margin-right: 2vw;
+  margin-left: 2vw;
   margin-top: 3vw;
-  width: 43vw;
-  line-height: 4vw;
   position: relative;
-  padding: 5vw;
-  text-align: center
-  
+  padding: 5vw; 
 }
 #searchlayout {
   text-align: center;
@@ -77,40 +63,39 @@ header {
 }
 
 img{
+  height: 80vw;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 2%;
-  margin-bottom: 2%;
-  border: 3px solid black;
-  border-radius: 5%;
-  box-shadow: .3vw .5vw rgb(105, 105, 103);
-  width: 15%;
+  margin-top: 4%;
+  margin-bottom: 3%;
+  border: 3px solid #fff;
+  border-radius: .2em;
+  box-shadow: .3vw .5vw #888;
 }
 
 #titleA{
   text-align: center;
   font-family: 'Paytone One', sans-serif;
-  font-size: 3vw;
+  font-size: 5vw;
   width: 50%;
   margin-left: 25%;
-  margin-top: .5%;
+  margin-top: 4vw;
   margin-bottom: .5%;
-  border: 3px solid black;
-  border-radius: 5%;
-  box-shadow: .3vw .5vw rgb(105, 105, 103);
+  text-shadow: .3vw .5vw #000;
 }
 
 #author{
   text-align: center;
-  font-size: 2.5vw;
+  font-size: 3vw;
   width: 50%;
   margin-left: 25%;
-  margin-top: .5%;
+  margin-top: 4vw;
+  font-style: italic;
+  font-weight: bold;
   margin-bottom: .5%;
-  border: 3px solid black;
-  border-radius: 5%;
-  box-shadow: .3vw .5vw rgb(105, 105, 103);
+  color: #222;
+  /* text-shadow: .3vw #000; */
 }
 #description{
   text-align: justify;
@@ -119,19 +104,28 @@ img{
   margin-left: 25%;
   margin-top: .6%;
   margin-bottom: .6%;
-  border: 3px solid black;
-  border-radius: 5%;
-  box-shadow: .3vw .5vw rgb(105, 105, 103);
   padding: 7px;
 }
-main {
-
-  width: 60%;
-  margin-left: 25%;
-  margin-top: .6%;
+#divcontain {
+  height: 150vw;
+  width: 75vw;
+  margin-left: 9vw;
+  margin-top: 10vw;
+  background-color: #bbb;
   margin-bottom: .6%;
-  border: 3px solid black;
-  /* border-radius: 5%; */
-  box-shadow: .3vw .5vw rgb(105, 105, 103);
-  /* padding: 7px; */
+  border: 3px solid #444;
+  border-radius: .2em;
+  box-shadow: .3vw .5vw .3vw .5vw #222;
+  padding-top: 7px;
+}
+#viewdeets {
+    background-color: #000;
+    color: white;
+    border-radius: .2em;
+    width: 51vw;
+    margin-right: 2vw;
+    margin-left: 7vw;
+    margin-top: 10vw;
+    margin-bottom: 0;
+    padding: 5vw; 
 }
